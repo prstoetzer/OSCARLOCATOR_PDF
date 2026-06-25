@@ -251,9 +251,12 @@
 
     ax.markerAt(0, 0, "+", 14, "#000000", 2);
 
-    // per-pass rotation indicator
+    // per-pass rotation indicator. North-up azimuthal view: seen from above the
+    // North Pole, Earth spins CCW, so eastward is CCW and WESTWARD is CW. The
+    // node drifts west each pass, so a northern overlay rotates CLOCKWISE; the
+    // southern sheet mirrors longitude, flipping the sense to counter-clockwise.
     const west = shift < 0;
-    const ccw = proj.is_south ? (!west) : west;
+    const ccw = proj.is_south ? west : (!west);
     if (!reduced_text) {
       const r_ind = rmax * 1.18;
       const half = Math.abs(shift) * DEG / 2.0;
